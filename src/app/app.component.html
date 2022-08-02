@@ -1,1 +1,9 @@
-<h1>Starting...</h1>
+
+<app-navbar></app-navbar>
+
+<div class="p-3">
+    <app-main-contactos *ngIf="page === 'contactos'; else csv "></app-main-contactos>
+    <ng-template #csv>
+        <app-main-csv></app-main-csv>
+    </ng-template>
+</div>

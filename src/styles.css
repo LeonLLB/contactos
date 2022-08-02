@@ -542,6 +542,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.p-3 {
+  padding: 0.75rem;
+}
+
 body {
   scroll-margin: -2.5rem;
   scroll-behavior: auto;
