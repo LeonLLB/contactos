@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-
-type Page = 'csv' | 'contactos'
+import { Page } from './navigation.interface';
 
 @Injectable({
   providedIn: 'root'

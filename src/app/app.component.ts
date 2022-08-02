@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Page } from './services/navigation.interface';
 import { NavigationService } from './services/navigation.service';
 
 @Component({
@@ -16,9 +17,8 @@ export class AppComponent implements OnInit {
     this.page = this.navService.actualPage
   }
 
-  changePage(){
-    if(this.page === 'csv') this.navService.setPage('contactos'); 
-    else this.navService.setPage('csv');
+  changePage(page: Page){
+    this.navService.setPage(page); 
 
     this.page = this.navService.actualPage
   }

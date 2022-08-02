@@ -1,1 +1,5 @@
-<p>navbar works!</p>
+<nav class="flex flex-row justify-around text-2xl bg-slate-900 w-screen px-4 py-2 text-white">
+    <span class="transition-all hover:text-slate-500 active:text-slate-500 hover:scale-[.85]" (click)="changePage('contactos')" [ngClass]="{'border-b-2 border-slate-400 text-slate-400': page === 'contactos'}">Contactos</span>
+    <span class="italic bg-gradient-to-r from-gray-500 via-slate-900 to-slate-700 p-1 rounded-3xl">ContactApp</span>
+    <span class="transition-all hover:text-slate-500 active:text-slate-500 hover:scale-[.85]" (click)="changePage('csv')" [ngClass]="{'border-b-2 border-slate-400 text-slate-400': page === 'csv'}">CSV</span>
+</nav>
