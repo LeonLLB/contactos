@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-    @apply bg-red-300 scroll-auto -scroll-m-10;
+    @apply bg-gray-300 scroll-auto -scroll-m-10;
     font-family: 'Segoe UI', ui-sans-serif, Tahoma, Geneva, Verdana, system-ui, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important; 
 }
