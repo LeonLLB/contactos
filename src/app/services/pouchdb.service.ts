@@ -23,4 +23,30 @@ export class PouchdbService {
       return info
     })
   }
+
+  getOne(id:string): Promise<Contacto | null> {
+    return this.db.get<Contacto>(id)
+  }
+
+  update(contactoNew: Contacto): Promise<boolean> {
+    return this.db.get<Contacto>(contactoNew._id)
+    .then(data=>{
+      return this.db.put({
+        ...contactoNew,
+        _id:contactoNew._id,
+        _rev:data._rev
+      })
+    })
+    .then(()=>true)
+    .catch((e)=>{console.log(e);return false})
+  }
+
+  delete(id:string): Promise<boolean> {
+    return this.db.get<Contacto>(id)
+    .then(data=>{
+      return this.db.remove(data)
+    })
+    .then(()=>true)
+    .catch((e)=>{console.log(e);return false})
+  }
 }
