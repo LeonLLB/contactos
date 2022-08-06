@@ -1,26 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Page } from './services/navigation.interface';
-import { NavigationService } from './services/navigation.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+
   
-  page = ''
-
-  constructor(private navService: NavigationService){
-  }
-  
-  ngOnInit() {
-    this.page = this.navService.actualPage
-  }
-
-  changePage(page: Page){
-    this.navService.setPage(page); 
-
-    this.page = this.navService.actualPage
-  }
 
 }

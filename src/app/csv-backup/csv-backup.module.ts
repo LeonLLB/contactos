@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ImportCsvComponent } from './import-csv/import-csv.component';
 import { ExportCsvComponent } from './export-csv/export-csv.component';
 import { MainCsvComponent } from './main-csv/main-csv.component';
+import { CsvBackupComponent } from './csv-backup.component';
+import { CsvRoutingModule } from './csv-routing.module';
 
 
 
@@ -10,13 +12,12 @@ import { MainCsvComponent } from './main-csv/main-csv.component';
   declarations: [
     ImportCsvComponent,
     ExportCsvComponent,
-    MainCsvComponent
-  ],
-  exports:[
     MainCsvComponent,
+    CsvBackupComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CsvRoutingModule
   ]
 })
 export class CsvBackupModule { }

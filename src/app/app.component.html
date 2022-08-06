@@ -1,9 +1,11 @@
 
-<app-navbar (onChangePage)="changePage($event)"></app-navbar>
+<nav class="flex flex-row justify-around text-2xl bg-slate-900 w-screen px-4 py-2 text-white">
+    <a routerLink="/contactos" class="transition-all hover:text-slate-500 active:text-slate-500 hover:scale-[.85]" routerLinkActive="border-b-2 border-slate-400 text-slate-400">Contactos</a>
+    <span class="italic bg-gradient-to-r from-gray-500 via-slate-900 to-slate-700 p-1 rounded-3xl">ContactApp</span>
+    <a routerLink="/csv" class="transition-all hover:text-slate-500 active:text-slate-500 hover:scale-[.85]" routerLinkActive="border-b-2 border-slate-400 text-slate-400">CSV</a>
+</nav>
+
 
 <div class="p-3">
-    <app-main-contactos *ngIf="page === 'contactos'; else csv "></app-main-contactos>
-    <ng-template #csv>
-        <app-main-csv></app-main-csv>
-    </ng-template>
+    <router-outlet></router-outlet>
 </div>

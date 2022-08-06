@@ -4,6 +4,8 @@ import { MainContactosComponent } from './main-contactos/main-contactos.componen
 import { ContactoCardComponent } from './contacto-card/contacto-card.component';
 import { ContactoFormComponent } from './contacto-form/contacto-form.component';
 import { ContactoInfoComponent } from './contacto-info/contacto-info.component';
+import { ContactoRoutingModule } from './contactos-routing.module';
+import { ContactosComponent } from './contactos.component';
 
 
 
@@ -12,13 +14,14 @@ import { ContactoInfoComponent } from './contacto-info/contacto-info.component';
     MainContactosComponent,
     ContactoCardComponent,
     ContactoFormComponent,
-    ContactoInfoComponent
+    ContactoInfoComponent,
+    ContactosComponent
   ],
   exports: [
-    MainContactosComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ContactoRoutingModule
   ]
 })
 export class ContactosModule { }
