@@ -1,6 +1,11 @@
 <div class="h-[85vh] overflow-y-auto">
-content
+
+    <div *ngIf="contactoList.length > 0"> Hay datos </div>
+    <div *ngIf="contactoList.length === 0"> No hay datos</div>
+
 </div>
+
+
 <a 
     routerLink="/contactos/registrar"
     class="
