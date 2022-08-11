@@ -1,5 +1,5 @@
 
-interface AdditionalValues {
+export interface AdditionalValues {
     label:string,
     value:string
 }

@@ -6,6 +6,8 @@ import { ContactoFormComponent } from './contacto-form/contacto-form.component';
 import { ContactoInfoComponent } from './contacto-info/contacto-info.component';
 import { ContactoRoutingModule } from './contactos-routing.module';
 import { ContactosComponent } from './contactos.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,11 +19,11 @@ import { ContactosComponent } from './contactos.component';
     ContactoInfoComponent,
     ContactosComponent
   ],
-  exports: [
-  ],
   imports: [
     CommonModule,
-    ContactoRoutingModule
+    ContactoRoutingModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class ContactosModule { }
