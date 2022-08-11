@@ -12,6 +12,16 @@ export class InputErrorDirective implements OnInit{
     this.setMsg()
   }
 
+  @Input() set InputError(condicion: boolean | null){
+    if(condicion){
+      this.htmlElement.nativeElement.classList.remove('hidden')
+    }else{
+      this._msg = ''
+      this.setMsg()
+      this.htmlElement.nativeElement.classList.add('hidden')
+    }
+  }
+
   constructor(
     private htmlElement: ElementRef<HTMLElement>,
   ) { }

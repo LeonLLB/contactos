@@ -42,7 +42,7 @@ export class ContactoFormComponent implements OnInit {
     this.extraValue.reset()
   }
 
-  esValido(campo: string) {
+  esValido(campo: string): boolean | null {
     return (this.contactoForm.controls[campo].errors && this.contactoForm.controls[campo].touched)
   }
   

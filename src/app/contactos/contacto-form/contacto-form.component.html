@@ -1,7 +1,7 @@
-<form class="flex flex-col items-center items-center space-y-2" autocomplete="off" [formGroup]="contactoForm" (ngSubmit)="formSubmit()">
+<form class="flex flex-col items-center space-y-2" autocomplete="off" [formGroup]="contactoForm" (ngSubmit)="formSubmit()">
     <h1 class="font-semibold text-2xl">Añadir contacto</h1>
 
-    <div class="flex flex-col items-center items-center space-y-2">
+    <div class="flex flex-col items-center space-y-2">
         <div class="flex flex-row text-lg space-x-4 items-center">
             <label for="nombre">Nombre:</label>
             <input
@@ -11,8 +11,8 @@
                 formControlName="nombre"
                 placeholder="Nombre">
         </div>
-        <span *ngIf="esValido('nombre')"
-            InputError
+        <span
+            [InputError]="esValido('nombre')"
             [mensaje]="getErrorMsg('nombre')"
             class="text-red-600"
         ></span>     
@@ -27,8 +27,8 @@
                 formControlName="apellido"
                 placeholder="Apellido">
         </div>
-        <span *ngIf="esValido('apellido')"
-            InputError
+        <span
+            [InputError]="esValido('apellido')"
             [mensaje]="getErrorMsg('apellido')"
             class="text-red-600"
         ></span>     
@@ -44,8 +44,8 @@
                 formControlName="cedula"
                 placeholder="Cedula">
         </div>
-        <span *ngIf="esValido('cedula')"
-            InputError
+        <span
+            [InputError]="esValido('cedula')"
             [mensaje]="getErrorMsg('cedula')"
             class="text-red-600"
         ></span>   
@@ -61,8 +61,8 @@
                 formControlName="correo"
                 placeholder="Correo electronico">
         </div>
-        <span *ngIf="esValido('correo')"
-            InputError
+        <span
+            [InputError]="esValido('correo')"
             [mensaje]="getErrorMsg('correo')"
             class="text-red-600"
         ></span>   
@@ -78,8 +78,8 @@
                 formControlName="telefono"
                 placeholder="Telefono">
         </div>
-        <span *ngIf="esValido('telefono')"
-            InputError
+        <span
+            [InputError]="esValido('telefono')"
             [mensaje]="getErrorMsg('telefono')"
             class="text-red-600"
         ></span>   
