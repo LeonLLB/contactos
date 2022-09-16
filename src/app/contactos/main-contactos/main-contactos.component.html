@@ -1,10 +1,20 @@
 <div class="h-[85vh] overflow-y-auto">
 
-    <div *ngIf="contactoList.length > 0"> Hay datos </div>
-    <div *ngIf="contactoList.length === 0"> No hay datos</div>
+    <div *ngIf="contactoList.length > 0" class="w-full"> 
+        <span class="w-full text-xl flex flex-row justify-evenly" *ngFor="let contacto of contactoList">
+            <span 
+                class="rounded-full text-xl text-white w-10 h-10 flex flex-col items-center justify-center"
+                [CustomContactColor]="contacto"
+                >
+                <span>
+                    {{contacto.nombre.split('')[0]}}
+                </span>
+            </span>
+            <span [routerLink]="[contacto.id]" class="cursor-pointer border-b border-black ml-4">{{contacto.nombre}} {{contacto.apellido}}</span>
+        </span>
+    </div>
 
 </div>
-
 
 <a 
     routerLink="/contactos/registrar"

@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputErrorDirective } from './directives/input-error.directive';
 import { InputComponent } from './input/input.component';
 import { ArrInputComponent } from './arr-input/arr-input.component';
+import { CustomContactColorDirective } from './directives/custom-contact-color.directive';
 
 
 
@@ -11,7 +12,8 @@ import { ArrInputComponent } from './arr-input/arr-input.component';
   declarations: [
     InputErrorDirective,
     InputComponent,
-    ArrInputComponent
+    ArrInputComponent,
+    CustomContactColorDirective
   ],
   imports:[
     ReactiveFormsModule,
@@ -19,6 +21,7 @@ import { ArrInputComponent } from './arr-input/arr-input.component';
   ],
   exports:[
     InputErrorDirective,
+    CustomContactColorDirective,
     InputComponent,
     ArrInputComponent
   ]

@@ -20,7 +20,6 @@ export class MainContactosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.contactoLiveQuery.unsubscribe()
-  }
-  
+  }  
 
 }
