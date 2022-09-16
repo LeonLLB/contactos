@@ -28,8 +28,12 @@ export class ContactoInfoComponent implements OnInit {
 
       this.db.getContacto(this.contactoId)
       .then(contacto => {
-        this.contacto = contacto
-        this.isLoading = false
+        if(contacto){
+          this.contacto = contacto
+          this.isLoading = false  
+          return
+        }
+        this.router.navigate(['/contactos'])
       })
     })
   }

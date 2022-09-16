@@ -23,13 +23,13 @@ export class DBService {
     .then(data=>data as Contacto)
   }
 
-  updateContacto(contacto:Contacto): Promise<boolean>{
-    return db.contactos.update(contacto.id!,contacto)
+  updateContacto(id:number,contacto:Contacto): Promise<boolean>{
+    return db.contactos.update(+id,contacto)
     .then(data=>data===1)
   }
 
   deleteContacto(id:number): Promise<void>{
-    return db.contactos.delete(id)
+    return db.contactos.delete(+id)
   }
 
 }

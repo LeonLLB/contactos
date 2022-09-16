@@ -1,5 +1,5 @@
 <form class="flex flex-col items-center space-y-2" autocomplete="off" [formGroup]="contactoForm" (ngSubmit)="formSubmit()">
-    <h1 class="font-semibold text-2xl">Añadir contacto</h1>
+    <h1 class="font-semibold text-2xl">{{isEditableForm ? 'Modificar contacto' : 'Añadir contacto'}}</h1>
 
     <div>
         <app-input
@@ -72,6 +72,6 @@
         </div>
     </div>
 
-    <button class="btn">Registrar contacto</button>
+    <button class="btn">{{isEditableForm ? 'Modificar contacto' : 'Registrar contacto'}}</button>
 
 </form>
