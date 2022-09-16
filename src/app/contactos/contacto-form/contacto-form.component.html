@@ -53,6 +53,7 @@
                 *ngFor="let labelInp of getAdditionalLabels.controls; let i = index"
                 formArrayName="extraLabels"
                 [formGroup]="contactoForm"
+                class="w-24"
                 [inputName]="i"
                 placeholder="Que soy?"
             ></app-arr-input>
@@ -61,6 +62,7 @@
             <app-arr-input
                 *ngFor="let valuesInp of getAdditionalValues.controls; let i = index"
                 formArrayName="extraValues"
+                class="w-40"
                 [formGroup]="contactoForm"
                 [inputName]="i"
             ></app-arr-input>

@@ -14,6 +14,7 @@ type InputElementType = 'text' | 'number' | 'email' | 'tel'
                 [type]="type"
                 [id]="inputName"
                 class="p-1 rounded-md border border-gray-500"
+                [class]="className"
                 [formControlName]="inputName"
                 [placeholder]="placeholder">
         </div>
@@ -31,6 +32,7 @@ type InputElementType = 'text' | 'number' | 'email' | 'tel'
 export class ArrInputComponent implements OnInit {
 
   @Input() formGroup!: FormGroup;
+  @Input('class') className!: string
   @Input() formArrayName!: string;
   @Input() inputName!: number;
   @Input() placeholder: string = '';
