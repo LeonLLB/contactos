@@ -1,95 +1,77 @@
 <form class="flex flex-col items-center space-y-2" autocomplete="off" [formGroup]="contactoForm" (ngSubmit)="formSubmit()">
     <h1 class="font-semibold text-2xl">Añadir contacto</h1>
 
-    <div class="flex flex-col items-center space-y-2">
-        <div class="flex flex-row text-lg space-x-4 items-center">
-            <label for="nombre">Nombre:</label>
-            <input
-                type="text"
-                id="nombre"
-                class="p-1 rounded-md border border-gray-500"
-                formControlName="nombre"
-                placeholder="Nombre">
-        </div>
-        <span
-            [InputError]="esValido('nombre')"
-            [mensaje]="getErrorMsg('nombre')"
-            class="text-red-600"
-        ></span>     
+    <div>
+        <app-input
+            inputName="nombre"
+            placeholder="Nombre"
+            [formGroup]="contactoForm"
+            label="Nombre"
+        ></app-input>  
+    </div>
+
+    <div>
+        <app-input
+            inputName="apellido"
+            placeholder="Apellido"
+            [formGroup]="contactoForm"
+            label="Apellido"
+        ></app-input>  
+    </div>
+
+    <div >
+        <app-input
+            inputName="correo"
+            type="email"
+            placeholder="Correo electronico"
+            [formGroup]="contactoForm"
+            label="Correo"
+        ></app-input>  
     </div>
 
     <div class="flex flex-col items-center space-y-2">
-        <div class="flex flex-row text-lg space-x-4 items-center">
-        <label for="apellido">Apellido:</label>
-            <input
-                type="text"
-                class="p-1 rounded-md border border-gray-500"
-                formControlName="apellido"
-                placeholder="Apellido">
-        </div>
-        <span
-            [InputError]="esValido('apellido')"
-            [mensaje]="getErrorMsg('apellido')"
-            class="text-red-600"
-        ></span>     
+        <app-input
+            inputName="telefono"
+            type="tel"
+            placeholder="Telefono"
+            [formGroup]="contactoForm"
+            label="Telefono"
+        ></app-input>    
     </div>
 
-    <div class="flex flex-col items-center space-y-2">
-        <div class="flex flex-row text-lg space-x-4 items-center">
-            <label for="cedula">Cedula:</label>
-            <input
-                type="number"
-                id="cedula"
-                class="p-1 rounded-md border border-gray-500"
-                formControlName="cedula"
-                placeholder="Cedula">
+    <button
+        type="button"
+        (click)="addAditionalValue()"
+        class="btn"
+    >
+        Añadir campo adicional
+    </button>
+
+    <div class="flex flex-row space-x-1">
+        <div class="flex flex-col space-y-2">
+            <app-arr-input
+                *ngFor="let labelInp of getAdditionalLabels.controls; let i = index"
+                formArrayName="extraLabels"
+                [formGroup]="contactoForm"
+                [inputName]="i"
+                placeholder="Que soy?"
+            ></app-arr-input>
         </div>
-        <span
-            [InputError]="esValido('cedula')"
-            [mensaje]="getErrorMsg('cedula')"
-            class="text-red-600"
-        ></span>   
+        <div class="flex flex-col space-y-2">
+            <app-arr-input
+                *ngFor="let valuesInp of getAdditionalValues.controls; let i = index"
+                formArrayName="extraValues"
+                [formGroup]="contactoForm"
+                [inputName]="i"
+            ></app-arr-input>
+        </div>
+        <div class="w-4 flex flex-col space-y-2">
+            <button type="button" (click)="deleteInputFromArr(i)" *ngFor="let _ of getAdditionalLabels.controls; let i = index" class="btn">
+                <span class="material-icons-outlined">delete</span>
+            </button>
+        </div>
     </div>
 
-    <div class="flex flex-col items-center space-y-2">
-        <div class="flex flex-row text-lg space-x-4 items-center">
-            <label for="correo">Correo:</label>
-            <input
-                type="email"
-                id="correo"
-                class="p-1 rounded-md border border-gray-500"
-                formControlName="correo"
-                placeholder="Correo electronico">
-        </div>
-        <span
-            [InputError]="esValido('correo')"
-            [mensaje]="getErrorMsg('correo')"
-            class="text-red-600"
-        ></span>   
-    </div>
-
-    <div class="flex flex-col items-center space-y-2">
-        <div class="flex flex-row text-lg space-x-4 items-center">
-            <label for="telefono">Telefono:</label>
-            <input
-                type="number"
-                id="telefono"
-                class="p-1 rounded-md border border-gray-500"
-                formControlName="telefono"
-                placeholder="Telefono">
-        </div>
-        <span
-            [InputError]="esValido('telefono')"
-            [mensaje]="getErrorMsg('telefono')"
-            class="text-red-600"
-        ></span>   
-    </div>
-
-    <pre *ngFor="let input of rawValues">
-        {{input[0]}} : {{input[1].errors | json}}
-    </pre>
-
-    <pre>{{contactoForm.pristine}}</pre>
-    <pre>{{contactoForm.touched}}</pre>
+    <button class="btn">Registrar contacto</button>
 
 </form>

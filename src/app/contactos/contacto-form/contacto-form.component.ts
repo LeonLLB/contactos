@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AdditionalValues } from 'src/app/interfaces/contacto.interface';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AdditionalValues, Contacto } from 'src/app/interfaces/contacto.interface';
 import { DBService } from 'src/app/services/db.service';
 import { ValidatorService } from 'src/app/services/validator.service';
 
@@ -15,43 +16,57 @@ export class ContactoFormComponent implements OnInit {
   contactoForm: FormGroup = this.fb.group({
     nombre:['',[Validators.required,this.validatorService.notNumeric]],
     apellido:['',[Validators.required,this.validatorService.notNumeric]],
-    cedula:[null,[Validators.required,Validators.min(1),this.validatorService.maxNumericLength(9,true),this.validatorService.numeric]],
     correo: ['',Validators.email],
     telefono: [null,[Validators.min(1),this.validatorService.minNumericLength(10),this.validatorService.numeric]],
-    extraValues: this.fb.array<AdditionalValues>([])
+    extraLabels: this.fb.array<string>([]),
+    extraValues: this.fb.array<string>([])
   })
 
-  extraValue:FormGroup = this.fb.group({
-    label:[''],
-    value:['']
-  })
+  extraValue: FormControl = this.fb.control('')
+  extraLabel: FormControl = this.fb.control('')
+
+  constructor(
+    private validatorService: ValidatorService,
+    private dbService: DBService,
+    private fb: FormBuilder,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    const labels = localStorage.getItem('labels')
+    console.log(labels)
+  }
 
   get rawValues(){
     return Object.entries(this.contactoForm.controls)
   }
 
   get getAdditionalValues(){
-    return this.contactoForm.get('extraValues') as FormArray
+    return this.getLabelOrValueFromForm('value')
+  }
+
+  get getAdditionalLabels(){
+    return this.getLabelOrValueFromForm('label')
+  }
+
+  getLabelOrValueFromForm(type: 'value' | 'label'): FormArray{
+    if(type === 'value') return this.contactoForm.get('extraValues') as FormArray
+    return this.contactoForm.get('extraLabels') as FormArray
   }
 
   addAditionalValue(){
-    if (this.extraValue.invalid) return;
+    if (this.extraValue.invalid || this.extraLabel.invalid) return;
 
     this.getAdditionalValues.push(this.fb.control(this.extraValue.value))
+    this.getAdditionalLabels.push(this.fb.control(this.extraLabel.value))
 
     this.extraValue.reset()
+    this.extraLabel.reset()
   }
 
-  esValido(campo: string): boolean | null {
-    return (this.contactoForm.controls[campo].errors && this.contactoForm.controls[campo].touched)
-  }
-  
-  getErrorMsg(campo: string): string | null{
-    return this.validatorService.getErrorsMSG(this.contactoForm.controls[campo].errors)
-  }
-
-  deleteAdditionalValue(index:number){
+  deleteInputFromArr(index:number){
     this.getAdditionalValues.removeAt(index)
+    this.getAdditionalLabels.removeAt(index)
   }
 
   formSubmit(){
@@ -60,12 +75,27 @@ export class ContactoFormComponent implements OnInit {
       return;
     }
 
-    console.log(this.contactoForm.value)
-  }
+    if(this.getAdditionalLabels.length > 0) localStorage.setItem('labels',JSON.stringify(this.getAdditionalLabels.value))
 
-  constructor(private validatorService: ValidatorService, private dbService: DBService, private fb: FormBuilder) { }
+    const newContacto: Contacto = {
+      nombre: this.contactoForm.value.nombre,
+      apellido: this.contactoForm.value.apellido,
+      telefono: this.contactoForm.value.telefono,
+      correo: this.contactoForm.value.correo,
+      extraValues: (this.contactoForm.value.extraLabels as []).map((label,i)=>{
+        return {
+          label,
+          value:this.contactoForm.value.extraValues[i],
+        }
+      })
+    }
 
-  ngOnInit(): void {
+    this.dbService.addContacto(newContacto)
+    .then(result=>{
+      if(result){
+        this.router.navigate(['contactos'])
+      }
+    })
   }
 
 }

@@ -7,3 +7,11 @@ body {
     @apply bg-gray-300 scroll-auto -scroll-m-10;
     font-family: 'Segoe UI', ui-sans-serif, Tahoma, Geneva, Verdana, system-ui, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important; 
 }
+
+.btn{
+    @apply transition-all duration-300;
+    @apply shadow-md hover:shadow-gray-600 active:shadow-gray-600 shadow-gray-500 active:shadow;
+    @apply text-white bg-blue-700 hover:bg-blue-600 active:bg-blue-600;
+    @apply px-4 py-2 rounded-lg;
+    @apply space-x-2 flex flex-row items-center justify-center;
+}

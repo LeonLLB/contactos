@@ -14,7 +14,7 @@ export class DBService {
   
   addContacto(contacto: Contacto): Promise<boolean>{
     return db.contactos.add(contacto)
-    .then(data=>console.log(data))
+    .then(data=>data)
     .then(()=>true)
   }
 

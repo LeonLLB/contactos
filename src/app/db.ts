@@ -5,7 +5,7 @@ export class ContactoDB extends Dexie{
     contactos!: Table<Contacto,number>
 
     constructor(){
-        super('ngdexieliveQuery')
+        super('contactosDB')
         this.version(3).stores({
             contactos: '++id'
         })
