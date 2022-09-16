@@ -38,4 +38,11 @@ export class ContactoInfoComponent implements OnInit {
     })
   }
 
+  deleteContacto(){
+    this.db.deleteContacto(this.contactoId)
+    .then(_=>{
+      this.router.navigate(['/contactos'])
+    })
+  }
+
 }
