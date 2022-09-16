@@ -32,4 +32,13 @@ export class DBService {
     return db.contactos.delete(+id)
   }
 
+  queryContactoByNombreOrApellido(query: string): Promise<Contacto[]>{
+    const collection = db.contactos.filter((contacto)=>{
+      const condition = new RegExp(query.toLowerCase())
+      return condition.test(contacto.nombre.toLowerCase()) || condition.test(contacto.apellido.toLowerCase())
+    })
+
+    return collection.toArray()
+  }
+
 }

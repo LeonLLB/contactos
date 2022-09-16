@@ -1,7 +1,20 @@
 <div class="h-[85vh] overflow-y-auto">
 
-    <div *ngIf="contactoList.length > 0" class="w-full"> 
-        <span class="w-full text-xl flex flex-row justify-evenly" *ngFor="let contacto of contactoList">
+    <div class="flex flex-col items-center space-y-2">
+        <div class="flex flex-row text-lg space-x-4 items-center">
+            <label for="query">Buscar contacto</label>
+            <input
+                type="text"
+                id="query"
+                name="query"
+                class="p-1 rounded-md border border-gray-500"
+                (change)="consultarContactos()"
+                [(ngModel)]="query">
+        </div>
+    </div>
+
+    <div *ngIf="contactoList.length > 0" class="w-full space-y-4 mt-4 animate__fadeIn"> 
+        <span class="w-full text-xl flex flex-row" *ngFor="let contacto of contactoList">
             <span 
                 class="rounded-full text-xl text-white w-10 h-10 flex flex-col items-center justify-center"
                 [CustomContactColor]="contacto"

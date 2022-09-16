@@ -9,6 +9,7 @@ import { DBService } from 'src/app/services/db.service';
 export class MainContactosComponent implements OnInit, OnDestroy {
 
   contactoList: Contacto[] = []
+  query: string = ''
   contactoLiveQuery: any
 
   constructor(private DBService: DBService) { }
@@ -21,5 +22,10 @@ export class MainContactosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.contactoLiveQuery.unsubscribe()
   }  
+
+  consultarContactos(){
+    this.DBService.queryContactoByNombreOrApellido(this.query)
+    .then(result=>this.contactoList=result)
+  }
 
 }
