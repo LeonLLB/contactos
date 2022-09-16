@@ -28,7 +28,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/material-icons/iconfont/outlined.css"
+              "node_modules/material-icons/iconfont/outlined.css",
+              "src/animate.min.css"
             ],
             "scripts": [],
             "serviceWorker": true,
