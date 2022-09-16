@@ -18,6 +18,11 @@ export class DBService {
     .then(()=>true)
   }
 
+  getContacto(id: number): Promise<Contacto>{
+    return db.contactos.get(+id)
+    .then(data=>data as Contacto)
+  }
+
   updateContacto(contacto:Contacto): Promise<boolean>{
     return db.contactos.update(contacto.id!,contacto)
     .then(data=>data===1)

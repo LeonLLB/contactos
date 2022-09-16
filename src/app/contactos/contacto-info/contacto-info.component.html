@@ -1,1 +1,37 @@
-<p>contacto-info works!</p>
+<div *ngIf="isLoading">
+    cargando...
+</div>
+
+<div *ngIf="!isLoading && !contacto">
+    No hay contacto
+</div>
+
+<div *ngIf="!isLoading && contacto" class="flex flex-col items-center space-y-2">
+    <span 
+        class="rounded-full text-5xl text-white w-32 h-32 flex flex-col items-center justify-center"
+        [CustomContactColor]="contacto"
+        >
+        <span>
+            {{contacto.nombre.split('')[0]}}
+        </span>
+    </span>
+    <span class="text-bold text-4xl"> {{contacto.nombre}} {{contacto.apellido}} </span>
+    <span class="w-full flex flex-row justify-evenly">
+        <button [routerLink]="['/contactos','modificar',contactoId]" type="button" class="btn flex flex-row space-x-2">
+            <span class="material-icons-outlined">edit</span>
+            <span>Editar</span>
+        </button>
+        <button type="button" class="btn flex flex-row space-x-2">
+            <span class="material-icons-outlined">delete</span>
+            <span>Eliminar</span>
+        </button>
+    </span>
+    <span class="text-2xl font-semibold text-center">Información:</span>
+    <ul class="text-xl">
+        <li>Telefono: {{contacto.telefono}} </li>
+        <li>Correo: {{contacto.correo}} </li>
+        <li *ngFor="let additionalValue of contacto.extraValues">
+            {{additionalValue.label | titlecase}}: {{additionalValue.value}} 
+        </li>
+    </ul>
+</div>

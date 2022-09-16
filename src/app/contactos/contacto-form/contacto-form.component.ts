@@ -33,8 +33,15 @@ export class ContactoFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const labels = localStorage.getItem('labels')
-    console.log(labels)
+    const rawLabels = localStorage.getItem('labels')
+    if(!rawLabels) return
+
+    const labels: string[] = JSON.parse(rawLabels)
+
+    for(let label of labels){
+      this.extraLabel.setValue(label)
+      this.addAditionalValue()
+    }
   }
 
   get rawValues(){
