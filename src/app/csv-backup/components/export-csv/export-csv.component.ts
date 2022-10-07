@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CsvService } from '../../services/csv.service';
 
 @Component({
   selector: 'app-export-csv',
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExportCsvComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private csv: CsvService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  generateCsv(){
+    this.csv.export()
   }
 
 }
