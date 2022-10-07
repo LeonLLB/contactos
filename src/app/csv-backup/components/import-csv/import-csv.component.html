@@ -1,1 +1,8 @@
-<p>import-csv works!</p>
+<div class="text-center space-y-2">
+    <h2 class="text-lg font-semibold">Importar datos de CSV</h2>
+    <div class="space-y-2 flex flex-col justify-center">
+        <label for="file" class="btn cursor-pointer">{{ file ? file.name : 'Seleccionar csv:'}} </label>
+        <input class="hidden" type="file" (change)="onFileChange($event.target)" name="file" id="file">
+        <button (click)="onFileSubmit()" *ngIf="file" class="btn">Importar</button>
+    </div>
+</div>
