@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CsvService } from '../../services/csv.service';
 
 @Component({
   selector: 'app-import-csv',
@@ -8,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImportCsvComponent implements OnInit {
 
-  constructor() { }
+  file!: File
+
+  constructor(
+    private csv: CsvService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onFileChange(file: any){
+    this.file = file.files[0]
+  }
+
+  onFileSubmit(){
+    this.csv.import(this.file)
   }
 
 }
