@@ -37,7 +37,6 @@ export class CsvService {
           telefono:contacto.telefono,
           extraValues:[]
         }
-
         for (const contactoMap of Object.entries(contacto)) {
           if(skipInputs.includes(contactoMap[0])) continue;
 
@@ -46,12 +45,11 @@ export class CsvService {
             value:contactoMap[1]
           })
         }
-
         return preContacto
-
       })
 
-      console.log(parsedContactos)
+      this.db.restore(parsedContactos)
+      .then(keys=>console.log(keys))
     })
   }
 

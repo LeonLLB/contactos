@@ -41,4 +41,19 @@ export class DBService {
     return collection.toArray()
   }
 
+  restore(dbRestore: Contacto[]): Promise<number>{
+    return new Promise(async (resolve)=>{
+
+      const data = await db.contactos.filter(()=>true).toArray()
+      await db.contactos.bulkDelete(data.map(val=>val.id!))
+      const keys = await db.contactos.bulkAdd(dbRestore,undefined,{allKeys:true})
+      resolve(keys)
+
+      // this.getLiveQuery()
+      // .subscribe(async(data)=>{
+      //   const ids: number[] = data.map((val)=>val.id!)
+      // })
+    })
+  }
+
 }
