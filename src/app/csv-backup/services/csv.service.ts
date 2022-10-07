@@ -43,7 +43,7 @@ export class CsvService {
           return contactoParseado
         })
         parsedContactos = parsedContactos.sort((a,b) => a['id']>b['id'] ? 1 : -1)
-        this.http.post('http://localhost:3000/export',parsedContactos,{
+        this.http.post('https://csv-parser-api.onrender.com/export',parsedContactos,{
           responseType:'blob',
         })
         .subscribe(data=>{
